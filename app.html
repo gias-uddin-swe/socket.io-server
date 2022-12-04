@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IO</title>
+  </head>
+  <body>
+    <h1 id="data">Hello THis is hero Alom Socket profile</h1>
+    <h1 id="data2">Hello THis is hero Alom Socket profile</h1>
+
+    <input type="name" id="name" />
+    <input type="phon" id="phone" />
+    <button onclick="handleSend()">Send</button>
+
+    <!-- scrip tag from here  -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      // const handleSend = () => {
+      //   const name = document.getElementById("name").value;
+      //   const phone = document.getElementById("phone").value;
+      //   socket.emit("testEvent", { name, phone });
+      // };
+      //   socket.on("fifaWorldCup", (data) => {
+      //     document.getElementById("data").innerText = data;
+      //     console.log(data);
+      //   });
+
+      //   socket.on("cricketCupEvent", (data) => {
+      //     console.log(data);
+      //     document.getElementById("data").innerText = data;
+      //   });
+
+      const handleSend = () => {
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        socket.emit("chatEvent", { name, phone });
+      };
+      socket.on("chatShow", (data) => {
+        document.getElementById("data").innerText = data.name;
+        document.getElementById("data2").innerText = data.phone;
+      });
+    </script>
+  </body>
+</html>
